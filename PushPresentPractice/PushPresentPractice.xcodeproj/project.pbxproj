@@ -12,11 +12,16 @@
 		02E0CBE829F0E37900FAB052 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E0CBE629F0E37900FAB052 /* Main.storyboard */; };
 		02E0CBEA29F0E37A00FAB052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E0CBE929F0E37A00FAB052 /* Assets.xcassets */; };
 		02E0CBED29F0E37A00FAB052 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E0CBEB29F0E37A00FAB052 /* LaunchScreen.storyboard */; };
-		02E0CBF529F0E5CD00FAB052 /* PushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBF429F0E5CD00FAB052 /* PushViewController.swift */; };
-		02E0CBF729F0E5D100FAB052 /* PresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBF629F0E5D100FAB052 /* PresentViewController.swift */; };
-		02E0CBF929F0E66400FAB052 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBF829F0E66400FAB052 /* UIViewControllerExtension.swift */; };
-		02E0CBFB29F0E81E00FAB052 /* PushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBFA29F0E81E00FAB052 /* PushView.swift */; };
-		02E0CBFD29F0E82500FAB052 /* PresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBFC29F0E82500FAB052 /* PresentView.swift */; };
+		02E0CBF529F0E5CD00FAB052 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBF429F0E5CD00FAB052 /* ViewController.swift */; };
+		02E0CBFB29F0E81E00FAB052 /* ContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CBFA29F0E81E00FAB052 /* ContentsView.swift */; };
+		02E0CC0329F12D1700FAB052 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0229F12D1700FAB052 /* ViewController2.swift */; };
+		02E0CC0529F12D1E00FAB052 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0429F12D1E00FAB052 /* ViewController3.swift */; };
+		02E0CC0729F12D2700FAB052 /* ViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0629F12D2700FAB052 /* ViewController4.swift */; };
+		02E0CC0929F12D2D00FAB052 /* ViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0829F12D2D00FAB052 /* ViewController5.swift */; };
+		02E0CC0B29F12E7600FAB052 /* ContentsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0A29F12E7600FAB052 /* ContentsView2.swift */; };
+		02E0CC0D29F12E7B00FAB052 /* ContentsView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0C29F12E7B00FAB052 /* ContentsView3.swift */; };
+		02E0CC0F29F12E8000FAB052 /* ContentsView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0E29F12E8000FAB052 /* ContentsView4.swift */; };
+		02E0CC1129F12E8400FAB052 /* ContentsView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC1029F12E8400FAB052 /* ContentsView5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +32,16 @@
 		02E0CBE929F0E37A00FAB052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02E0CBEC29F0E37A00FAB052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02E0CBEE29F0E37A00FAB052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02E0CBF429F0E5CD00FAB052 /* PushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushViewController.swift; sourceTree = "<group>"; };
-		02E0CBF629F0E5D100FAB052 /* PresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewController.swift; sourceTree = "<group>"; };
-		02E0CBF829F0E66400FAB052 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		02E0CBFA29F0E81E00FAB052 /* PushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushView.swift; sourceTree = "<group>"; };
-		02E0CBFC29F0E82500FAB052 /* PresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentView.swift; sourceTree = "<group>"; };
+		02E0CBF429F0E5CD00FAB052 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02E0CBFA29F0E81E00FAB052 /* ContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView.swift; sourceTree = "<group>"; };
+		02E0CC0229F12D1700FAB052 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		02E0CC0429F12D1E00FAB052 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		02E0CC0629F12D2700FAB052 /* ViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController4.swift; sourceTree = "<group>"; };
+		02E0CC0829F12D2D00FAB052 /* ViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController5.swift; sourceTree = "<group>"; };
+		02E0CC0A29F12E7600FAB052 /* ContentsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView2.swift; sourceTree = "<group>"; };
+		02E0CC0C29F12E7B00FAB052 /* ContentsView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView3.swift; sourceTree = "<group>"; };
+		02E0CC0E29F12E8000FAB052 /* ContentsView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView4.swift; sourceTree = "<group>"; };
+		02E0CC1029F12E8400FAB052 /* ContentsView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView5.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,13 +74,11 @@
 		02E0CBDF29F0E37900FAB052 /* PushPresentPractice */ = {
 			isa = PBXGroup;
 			children = (
-				02E0CC0029F0E85400FAB052 /* Extension */,
 				02E0CBFF29F0E84000FAB052 /* ViewController */,
 				02E0CBFE29F0E83400FAB052 /* View */,
 				02E0CBE029F0E37900FAB052 /* AppDelegate.swift */,
 				02E0CBE229F0E37900FAB052 /* SceneDelegate.swift */,
 				02E0CBE629F0E37900FAB052 /* Main.storyboard */,
-				02E0CBF829F0E66400FAB052 /* UIViewControllerExtension.swift */,
 				02E0CBE929F0E37A00FAB052 /* Assets.xcassets */,
 				02E0CBEB29F0E37A00FAB052 /* LaunchScreen.storyboard */,
 				02E0CBEE29F0E37A00FAB052 /* Info.plist */,
@@ -81,8 +89,11 @@
 		02E0CBFE29F0E83400FAB052 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				02E0CBFA29F0E81E00FAB052 /* PushView.swift */,
-				02E0CBFC29F0E82500FAB052 /* PresentView.swift */,
+				02E0CBFA29F0E81E00FAB052 /* ContentsView.swift */,
+				02E0CC0A29F12E7600FAB052 /* ContentsView2.swift */,
+				02E0CC0C29F12E7B00FAB052 /* ContentsView3.swift */,
+				02E0CC0E29F12E8000FAB052 /* ContentsView4.swift */,
+				02E0CC1029F12E8400FAB052 /* ContentsView5.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -90,17 +101,13 @@
 		02E0CBFF29F0E84000FAB052 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				02E0CBF429F0E5CD00FAB052 /* PushViewController.swift */,
-				02E0CBF629F0E5D100FAB052 /* PresentViewController.swift */,
+				02E0CBF429F0E5CD00FAB052 /* ViewController.swift */,
+				02E0CC0229F12D1700FAB052 /* ViewController2.swift */,
+				02E0CC0429F12D1E00FAB052 /* ViewController3.swift */,
+				02E0CC0629F12D2700FAB052 /* ViewController4.swift */,
+				02E0CC0829F12D2D00FAB052 /* ViewController5.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		02E0CC0029F0E85400FAB052 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,11 +183,16 @@
 			files = (
 				02E0CBE129F0E37900FAB052 /* AppDelegate.swift in Sources */,
 				02E0CBE329F0E37900FAB052 /* SceneDelegate.swift in Sources */,
-				02E0CBFB29F0E81E00FAB052 /* PushView.swift in Sources */,
-				02E0CBF929F0E66400FAB052 /* UIViewControllerExtension.swift in Sources */,
-				02E0CBF729F0E5D100FAB052 /* PresentViewController.swift in Sources */,
-				02E0CBFD29F0E82500FAB052 /* PresentView.swift in Sources */,
-				02E0CBF529F0E5CD00FAB052 /* PushViewController.swift in Sources */,
+				02E0CBFB29F0E81E00FAB052 /* ContentsView.swift in Sources */,
+				02E0CC0F29F12E8000FAB052 /* ContentsView4.swift in Sources */,
+				02E0CC0729F12D2700FAB052 /* ViewController4.swift in Sources */,
+				02E0CC0929F12D2D00FAB052 /* ViewController5.swift in Sources */,
+				02E0CBF529F0E5CD00FAB052 /* ViewController.swift in Sources */,
+				02E0CC0529F12D1E00FAB052 /* ViewController3.swift in Sources */,
+				02E0CC1129F12E8400FAB052 /* ContentsView5.swift in Sources */,
+				02E0CC0329F12D1700FAB052 /* ViewController2.swift in Sources */,
+				02E0CC0D29F12E7B00FAB052 /* ContentsView3.swift in Sources */,
+				02E0CC0B29F12E7600FAB052 /* ContentsView2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
