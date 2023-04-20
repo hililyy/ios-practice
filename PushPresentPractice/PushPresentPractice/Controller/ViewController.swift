@@ -1,5 +1,5 @@
 //
-//  ViewController2.swift
+//  ViewController.swift
 //  PushPresentPractice
 //
 //  Created by 강조은 on 2023/04/20.
@@ -7,12 +7,13 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
-    
-    private let contentsView = ContentsView2()
+final class ViewController: UIViewController {
+
+    private let contentsView = ContentsView()
     
     override func loadView() {
         view = contentsView
+        view.backgroundColor = .systemRed
     }
     
     override func viewDidLoad() {
@@ -26,23 +27,26 @@ class ViewController2: UIViewController {
     }
     
     @objc func tapPushBtn() {
-        print("tap Push Btn in VC2")
         self.pushVC()
     }
     
     @objc func tapPresentBtn() {
-        print("tap Present Btn in VC2")
         self.presentVC()
     }
+}
+
+extension ViewController: ViewProtocol {
     
     public func pushVC() {
-        let vc = ViewController3()
+        print("func start Push Btn in VC1")
+        let vc = ViewController2()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     public func presentVC() {
+        print("func start Push Btn in VC1")
         let navigationController = UINavigationController()
-        let vc = ViewController3()
+        let vc = ViewController2()
         navigationController.viewControllers = [vc]
         self.present(navigationController, animated: true, completion: nil)
     }

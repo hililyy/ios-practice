@@ -9,10 +9,11 @@ import UIKit
 
 class ViewController5: UIViewController {
     
-    private let contentsView = ContentsView5()
+    private let contentsView = ContentsView()
     
     override func loadView() {
         view = contentsView
+        view.backgroundColor = .purple
     }
     
     override func viewDidLoad() {
@@ -24,6 +25,9 @@ class ViewController5: UIViewController {
         contentsView.pushBtn.addTarget(self, action: #selector(tapPushBtn), for: .touchUpInside)
         contentsView.presentBtn.addTarget(self, action: #selector(tapPresentBtn), for: .touchUpInside)
     }
+}
+
+extension ViewController5 {
     
     @objc func tapPushBtn() {
         print("tap Push Btn in VC5")

@@ -11,7 +11,6 @@ class ContentsView: UIView {
     
     private lazy var contentsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPink
         view.addSubview(stackView)
         return view
     }()

@@ -9,10 +9,11 @@ import UIKit
 
 class ViewController4: UIViewController {
     
-    private let contentsView = ContentsView4()
+    private let contentsView = ContentsView()
     
     override func loadView() {
         view = contentsView
+        view.backgroundColor = .blue
     }
     
     override func viewDidLoad() {
@@ -26,21 +27,30 @@ class ViewController4: UIViewController {
     }
     
     @objc func tapPushBtn() {
-        print("tap Push Btn in VC4")
+        sendNotification()
         self.pushVC()
     }
     
     @objc func tapPresentBtn() {
-        print("tap Present Btn in VC4")
         self.presentVC()
     }
     
+    func sendNotification() {
+        print("send Notification in VC4")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushToNextView"), object: nil)
+    }
+}
+
+extension ViewController4: ViewProtocol {
+    
     public func pushVC() {
+        print("func start Push Btn in VC4")
         let vc = ViewController5()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     public func presentVC() {
+        print("func start Present Btn in VC4")
         let navigationController = UINavigationController()
         let vc = ViewController5()
         navigationController.viewControllers = [vc]
