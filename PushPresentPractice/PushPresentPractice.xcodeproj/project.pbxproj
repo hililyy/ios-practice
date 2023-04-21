@@ -19,6 +19,7 @@
 		02E0CC0729F12D2700FAB052 /* ViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0629F12D2700FAB052 /* ViewController4.swift */; };
 		02E0CC0929F12D2D00FAB052 /* ViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC0829F12D2D00FAB052 /* ViewController5.swift */; };
 		02E0CC1429F136A000FAB052 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0CC1329F136A000FAB052 /* ViewProtocol.swift */; };
+		02E0CC1729F13DFD00FAB052 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02E0CC1629F13DFD00FAB052 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02E0CC1729F13DFD00FAB052 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,9 @@
 			dependencies = (
 			);
 			name = PushPresentPractice;
+			packageProductDependencies = (
+				02E0CC1629F13DFD00FAB052 /* RxSwift */,
+			);
 			productName = PushPresentPractice;
 			productReference = 02E0CBDD29F0E37900FAB052 /* PushPresentPractice.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +158,9 @@
 				Base,
 			);
 			mainGroup = 02E0CBD429F0E37900FAB052;
+			packageReferences = (
+				02E0CC1529F13DFD00FAB052 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 02E0CBDE29F0E37900FAB052 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,6 +414,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02E0CC1529F13DFD00FAB052 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02E0CC1629F13DFD00FAB052 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02E0CC1529F13DFD00FAB052 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02E0CBD529F0E37900FAB052 /* Project object */;
 }

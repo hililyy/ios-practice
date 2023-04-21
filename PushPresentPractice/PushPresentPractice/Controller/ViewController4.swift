@@ -27,17 +27,11 @@ class ViewController4: UIViewController {
     }
     
     @objc func tapPushBtn() {
-        sendNotification()
         self.pushVC()
     }
     
     @objc func tapPresentBtn() {
         self.presentVC()
-    }
-    
-    func sendNotification() {
-        print("send Notification in VC4")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushToNextView"), object: nil)
     }
 }
 

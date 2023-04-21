@@ -25,15 +25,17 @@ class ViewController5: UIViewController {
         contentsView.pushBtn.addTarget(self, action: #selector(tapPushBtn), for: .touchUpInside)
         contentsView.presentBtn.addTarget(self, action: #selector(tapPresentBtn), for: .touchUpInside)
     }
-}
-
-extension ViewController5 {
     
     @objc func tapPushBtn() {
-        print("tap Push Btn in VC5")
+        sendNotification()
     }
     
     @objc func tapPresentBtn() {
-        print("tap Present Btn in VC5")
+        sendNotification()
+    }
+    
+    func sendNotification() {
+        print("send Notification in VC5")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushToNextView"), object: nil)
     }
 }
