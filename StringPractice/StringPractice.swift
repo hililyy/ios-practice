@@ -1,5 +1,7 @@
 import Foundation
 
+// 문제 --------------------------------------------
+
 public class Model {
     public var date = "" // yyyyMMdd
     public var title = "" // 제목
@@ -16,9 +18,11 @@ for i in 0...30 {
 }
 
 var newList: [[Model]] = []
-var dicList: [String: [Model]] = [:]
 
-/* ————————————————————————————————————————————————————————— */
+
+// 풀이 --------------------------------------------
+
+var dicList: [String: [Model]] = [:]
 
 for data in dataList {
     let arr = Array(data.date)
@@ -33,7 +37,7 @@ for data in dataList {
 
 newList = dicList.map {
     $0.value.sorted(by: { $0.date > $1.date })}
-    .sorted { $0[0].date < $1[0].date }
+    .sorted { $0[0].date < $1[0].date
+}
 
 print(newList)
-
