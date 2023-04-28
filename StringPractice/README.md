@@ -19,7 +19,8 @@
 </br>
 
 2. MM의 String을 구하는 방법 </br>
-=> prefix()와 suffix()를 사용해야하는 요구사항을 충족하기 위해 String을 Array로 변환하여 체크합니다. 
+=> ~~prefix()와 suffix()를 사용해야하는 요구사항을 충족하기 위해 String을 Array로 변환하여 체크합니다.~~ </br>
+=> string에도 prefix()와 suffix()를 사용할 수 있습니다.
 
 </br>
 
