@@ -56,7 +56,7 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         return [self createNewLineView];
     };
 
-    _outerLineViews     = @[newLineView(), newLineView(), newLineView(), newLineView()];
+//    _outerLineViews     = @[newLineView(), newLineView(), newLineView(), newLineView()];
     
     _topLeftLineViews   = @[newLineView(), newLineView()];
     _bottomLeftLineViews = @[newLineView(), newLineView()];

@@ -86,7 +86,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         vc.aspectRatioLockEnabled = false
         vc.toolbarPosition = .bottom
         vc.doneButtonTitle = "Continue"
-        vc.cancelButtonTitle = "Quit"
+        vc.showOnlyIcons = true
         vc.delegate = self
         present(vc, animated: true)
     }
