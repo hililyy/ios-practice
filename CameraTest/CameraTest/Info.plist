@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>카메라 쓴다 권한 내놔</string>
+	<string>카메라</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>앨범 내놔아아아아아아!!!</string>
+	<string>앨범</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

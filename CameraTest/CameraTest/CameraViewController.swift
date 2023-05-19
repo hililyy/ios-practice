@@ -7,6 +7,8 @@
 
 import UIKit
 import AVFoundation
+import CropViewController
+
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     @IBOutlet weak var previewView: UIView!
@@ -50,15 +52,56 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
-        let image = UIImage(data: imageData)
+        guard let img = UIImage(data: imageData) else { return }
         // 이미지뷰에 이미지 설정
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else { return }
-        vc.myImage = image
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        showCrop(image: img)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
         photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self as AVCapturePhotoCaptureDelegate)
+    }
+    
+    @IBAction func goAlbum(_ sender: UIButton) {
+        didTapButton()
+    }
+}
+extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
+    @objc func didTapButton() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        picker.dismiss(animated: true)
+        showCrop(image: image)
+    }
+    
+    func showCrop(image: UIImage) {
+        let vc = CropViewController(croppingStyle: .default, image: image)
+        
+        vc.aspectRatioPreset = .presetSquare
+        vc.aspectRatioLockEnabled = false
+        vc.toolbarPosition = .bottom
+        vc.doneButtonTitle = "Continue"
+        vc.cancelButtonTitle = "Quit"
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true)
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        cropViewController.dismiss(animated: true)
+        print("didCrop")
+        // 여기서 서버 요청
+        let imageView = UIImageView(frame: view.frame)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        view.addSubview(imageView)
     }
 }

@@ -18,5 +18,13 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
         resultImage.image = myImage
     }
-    
+//    @IBAction func crop(_ sender: UIButton) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: "CropViewController") as? CropViewController else { return }
+//        
+//        vc.cropwillImage = myImage
+//        vc.modalPresentationStyle = .fullScreen
+//        navigationController?.pushViewController(vc, animated: true)
+//        
+//    }
 }

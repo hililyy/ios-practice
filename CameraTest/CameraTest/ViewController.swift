@@ -6,12 +6,15 @@
 //
 
 import UIKit
-import AVFoundation
-import Photos
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+    }
+    
+    @IBAction func goCamera(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
