@@ -44,9 +44,8 @@ class ToCropViewController: UIViewController, UIImagePickerControllerDelegate, U
         vc.aspectRatioPreset = .presetSquare
         vc.aspectRatioLockEnabled = false
         vc.toolbarPosition = .bottom
-        vc.doneButtonTitle = "Continue"
-        vc.cancelButtonTitle = "Quit"
         vc.delegate = self
+        vc.aspectRatioLockDimensionSwapEnabled = false
         present(vc, animated: true)
     }
     

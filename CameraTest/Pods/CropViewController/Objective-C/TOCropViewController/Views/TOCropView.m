@@ -231,10 +231,10 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self addSubview:self.gridOverlayView];
     
     // The pan controller to recognize gestures meant to resize the grid view
-    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
-    self.gridPanGestureRecognizer.delegate = self;
-    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
-    [self addGestureRecognizer:self.gridPanGestureRecognizer];
+//    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
+//    self.gridPanGestureRecognizer.delegate = self;
+//    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
+//    [self addGestureRecognizer:self.gridPanGestureRecognizer];
 }
 
 #pragma mark - View Layout -
@@ -1719,7 +1719,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
     self.canBeReset = canReset;
 }
-
+// 자르는 부분 크기 조정
 #pragma mark - Convienience Methods -
 - (CGRect)contentBounds
 {

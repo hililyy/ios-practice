@@ -176,40 +176,31 @@
         // Work out the cancel button frame
         CGRect frame = CGRectZero;
         frame.size.height = 65.0f;
-        frame.size.width = _showOnlyIcons ? 65.0f : MIN(self.frame.size.width / 3.0, self.cancelTextButton.frame.size.width);
+        frame.size.width = 65.0f;
 
         //If normal layout, place on the left side, else place on the right
-        if (self.reverseContentLayout == NO) {
-            frame.origin.x = insetPadding;
-        }
-        else {
-            frame.origin.x = boundsSize.width - (frame.size.width + insetPadding);
-        }
-        (_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame = frame;
+//        if (self.reverseContentLayout == NO) {
+//            frame.origin.x = insetPadding;
+//        }
+//        else {
+//            frame.origin.x = boundsSize.width - (frame.size.width + insetPadding);
+//        }
+//        (_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame = frame;
         
         // Work out the Done button frame
         frame.size.width = _showOnlyIcons ? 65.0f : MIN(self.frame.size.width / 3.0, self.doneTextButton.frame.size.width);
         
-        if (self.reverseContentLayout == NO) {
-            frame.origin.x = boundsSize.width - (frame.size.width + insetPadding);
-        }
-        else {
-            frame.origin.x = insetPadding;
-        }
+        frame.origin.x = boundsSize.width - (frame.size.width + insetPadding);
         (_showOnlyIcons ? self.doneIconButton : self.doneTextButton).frame = frame;
         
         // Work out the frame between the two buttons where we can layout our action buttons
-        CGFloat x = self.reverseContentLayout ? CGRectGetMaxX((_showOnlyIcons ? self.doneIconButton : self.doneTextButton).frame) : CGRectGetMaxX((_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame);
+        CGFloat x = self.reverseContentLayout ? CGRectGetMaxX(self.doneIconButton.frame) : CGRectGetMaxX(self.cancelIconButton.frame);
         CGFloat width = 0.0f;
         
-        if (self.reverseContentLayout == NO) {
-            width = CGRectGetMinX((_showOnlyIcons ? self.doneIconButton : self.doneTextButton).frame) - CGRectGetMaxX((_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame);
-        }
-        else {
-            width = CGRectGetMinX((_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame) - CGRectGetMaxX((_showOnlyIcons ? self.doneIconButton : self.doneTextButton).frame);
-        }
+        width = CGRectGetMinX((_showOnlyIcons ? self.doneIconButton : self.doneTextButton).frame) - CGRectGetMaxX((_showOnlyIcons ? self.cancelIconButton : self.cancelTextButton).frame);
         
-        CGRect containerRect = CGRectIntegral((CGRect){x,frame.origin.y,width,44.0f});
+        // 여기 수정해서 화면회전 버튼 위치 조정했음
+        CGRect containerRect = CGRectIntegral((CGRect){50,0,0,70});
 
 #if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
         containerView.frame = containerRect;
