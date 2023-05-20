@@ -60,7 +60,7 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 
 
     CGFloat labelWidth = 200;
-    CGFloat labelHeight = 30;
+    CGFloat labelHeight = 21;
     CGFloat labelX = (CGRectGetWidth(self.bounds) - labelWidth) / 2;
     CGFloat labelY = (CGRectGetHeight(self.bounds) - labelHeight) / 2;
 
@@ -69,7 +69,7 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     if (@available(iOS 9.0, *)) {
         [NSLayoutConstraint activateConstraints:@[
             [messageLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-            [messageLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant: -41],
+            [messageLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant: -(41+labelHeight)],
             [messageLabel.widthAnchor constraintEqualToConstant: labelWidth],
             [messageLabel.heightAnchor constraintEqualToConstant: labelHeight]
         ]];

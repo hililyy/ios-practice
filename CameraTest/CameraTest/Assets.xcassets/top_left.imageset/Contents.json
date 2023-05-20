@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tabler_radius-top-left.png",
+      "filename" : "그룹 748.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tabler_radius-top-left@2x.png",
+      "filename" : "그룹 748@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tabler_radius-top-left@3x.png",
+      "filename" : "그룹 748@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
