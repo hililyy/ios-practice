@@ -99,7 +99,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
         _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
         #endif
     }
-	
+    
     return self;
 }
 
@@ -313,7 +313,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
     if (!verticalLayout) {
         frame.origin.x = kTOCropViewControllerToolbarHeight + insets.left;
         frame.size.width = CGRectGetWidth(bounds) - frame.origin.x;
-		frame.size.height = CGRectGetHeight(bounds);
+        frame.size.height = CGRectGetHeight(bounds);
     }
     else { // Vertical layout
         frame.size.height = CGRectGetHeight(bounds);
@@ -323,7 +323,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
 //        if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
 //            frame.size.height -= (insets.bottom + kTOCropViewControllerToolbarHeight);
 //        } else if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
-//			frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
+//            frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
 //            frame.size.height -= frame.origin.y;
 //        }
     }
@@ -572,12 +572,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
     BOOL verticalCropBox = self.cropView.cropBoxAspectRatioIsPortrait;
     
     // Get the resource bundle depending on the framework/dependency manager we're using
-	NSBundle *resourceBundle = TO_CROP_VIEW_RESOURCE_BUNDLE_FOR_OBJECT(self);
+    NSBundle *resourceBundle = TO_CROP_VIEW_RESOURCE_BUNDLE_FOR_OBJECT(self);
     
     //Prepare the localized options
-	NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"Cancel", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-	NSString *originalButtonTitle = NSLocalizedStringFromTableInBundle(@"Original", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-	NSString *squareButtonTitle = NSLocalizedStringFromTableInBundle(@"Square", @"TOCropViewControllerLocalizable", resourceBundle, nil);
+    NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"Cancel", @"TOCropViewControllerLocalizable", resourceBundle, nil);
+    NSString *originalButtonTitle = NSLocalizedStringFromTableInBundle(@"Original", @"TOCropViewControllerLocalizable", resourceBundle, nil);
+    NSString *squareButtonTitle = NSLocalizedStringFromTableInBundle(@"Square", @"TOCropViewControllerLocalizable", resourceBundle, nil);
     
     //Prepare the list that will be fed to the alert view/controller
     

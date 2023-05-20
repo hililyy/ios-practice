@@ -26,7 +26,7 @@
 
 #define TOCROPVIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.12f alpha:1.0f]
 
-static const CGFloat kTOCropViewPadding = 14.0f;
+static const CGFloat kTOCropViewPadding = 30.0f;
 static const NSTimeInterval kTOCropTimerDuration = 0.8f;
 static const CGFloat kTOCropViewMinimumBoxSize = 42.0f;
 static const CGFloat kTOMaximumZoomScale = 15.0f;
@@ -141,7 +141,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.applyInitialCroppedImageFrame = NO;
     self.editing = NO;
     self.cropBoxResizeEnabled = !circularMode;
-    self.aspectRatio = circularMode ? (CGSize){1.0f, 1.0f} : CGSizeZero;
+    self.aspectRatio = CGSizeZero;
     self.resetAspectRatioEnabled = !circularMode;
     self.restoreImageCropFrame = CGRectZero;
     self.restoreAngle = 0;
@@ -811,15 +811,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self updateCropBoxFrameWithGesturePoint:point];
 }
 
-- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer
-{
-//    if (recognizer.state == UIGestureRecognizerStateBegan)
-//        [self.gridOverlayView setGridHidden:NO animated:YES];
-    
-//    if (recognizer.state == UIGestureRecognizerStateEnded)
-//        [self.gridOverlayView setGridHidden:YES animated:YES];
-}
-
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer != self.gridPanGestureRecognizer)
@@ -1000,8 +991,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     cropBoxFrame.size.height = floorf(MIN(cropBoxFrame.size.height, maxHeight));
     
     //Make sure we can't make the crop box too small
-    cropBoxFrame.size.width  = MAX(cropBoxFrame.size.width, kTOCropViewMinimumBoxSize);
-    cropBoxFrame.size.height = MAX(cropBoxFrame.size.height, kTOCropViewMinimumBoxSize);
+    cropBoxFrame.size.width  = MAX(315, kTOCropViewMinimumBoxSize);
+    cropBoxFrame.size.height = MAX(367, kTOCropViewMinimumBoxSize);
     
     _cropBoxFrame = cropBoxFrame;
     

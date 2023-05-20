@@ -91,8 +91,8 @@
     
     [_cancelTextButton setTitle: _cancelTextButtonTitle ?
         _cancelTextButtonTitle : NSLocalizedStringFromTableInBundle(@"Cancel",
-																	@"TOCropViewControllerLocalizable",
-																	resourceBundle,
+                                                                    @"TOCropViewControllerLocalizable",
+                                                                    resourceBundle,
                                                                     nil)
                        forState:UIControlStateNormal];
     [_cancelTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
