@@ -227,7 +227,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     // The white grid overlay view
     self.gridOverlayView = [[TOCropOverlayView alloc] initWithFrame:self.foregroundContainerView.frame];
     self.gridOverlayView.userInteractionEnabled = NO;
-    self.gridOverlayView.gridHidden = YES;
+//    self.gridOverlayView.gridHidden = YES;
     [self addSubview:self.gridOverlayView];
     
     // The pan controller to recognize gestures meant to resize the grid view
@@ -813,11 +813,11 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
 - (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer
 {
-    if (recognizer.state == UIGestureRecognizerStateBegan)
-        [self.gridOverlayView setGridHidden:NO animated:YES];
+//    if (recognizer.state == UIGestureRecognizerStateBegan)
+//        [self.gridOverlayView setGridHidden:NO animated:YES];
     
-    if (recognizer.state == UIGestureRecognizerStateEnded)
-        [self.gridOverlayView setGridHidden:YES animated:YES];
+//    if (recognizer.state == UIGestureRecognizerStateEnded)
+//        [self.gridOverlayView setGridHidden:YES animated:YES];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -1150,33 +1150,12 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     }];
 }
 
--(void)setAlwaysShowCroppingGrid:(BOOL)alwaysShowCroppingGrid
-{
-    if (alwaysShowCroppingGrid == _alwaysShowCroppingGrid) { return; }
-    _alwaysShowCroppingGrid = alwaysShowCroppingGrid;
-    [self.gridOverlayView setGridHidden:!_alwaysShowCroppingGrid animated:YES];
-}
 
 -(void)setTranslucencyAlwaysHidden:(BOOL)translucencyAlwaysHidden
 {
     if (_translucencyAlwaysHidden == translucencyAlwaysHidden) { return; }
     _translucencyAlwaysHidden = translucencyAlwaysHidden;
     self.translucencyView.hidden = _translucencyAlwaysHidden;
-}
-
-- (void)setGridOverlayHidden:(BOOL)gridOverlayHidden
-{
-    [self setGridOverlayHidden:_gridOverlayHidden animated:NO];
-}
-
-- (void)setGridOverlayHidden:(BOOL)gridOverlayHidden animated:(BOOL)animated
-{
-    _gridOverlayHidden = gridOverlayHidden;
-    self.gridOverlayView.alpha = gridOverlayHidden ? 1.0f : 0.0f;
-    
-    [UIView animateWithDuration:0.4f animations:^{
-        self.gridOverlayView.alpha = gridOverlayHidden ? 0.0f : 1.0f;
-    }];
 }
 
 - (CGRect)imageViewFrame
@@ -1250,8 +1229,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
     // Toggle the visiblity of the gridlines when not editing
     BOOL hidden = !_editing;
-    if (self.alwaysShowCroppingGrid) { hidden = NO; } // Override this if the user requires
-    [self.gridOverlayView setGridHidden:hidden animated:animated];
     
     if (resetCropbox) {
         [self moveCroppedContentToCenterAnimated:animated];

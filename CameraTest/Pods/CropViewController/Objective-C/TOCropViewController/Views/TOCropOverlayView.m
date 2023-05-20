@@ -26,9 +26,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 
 @interface TOCropOverlayView ()
 
-@property (nonatomic, strong) NSArray *horizontalGridLines;
-@property (nonatomic, strong) NSArray *verticalGridLines;
-
 @property (nonatomic, strong) NSArray *outerLineViews;   //top, right, bottom, left
 
 @property (nonatomic, strong) NSArray *topLeftLineViews; //vertical, horizontal
@@ -46,7 +43,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         self.clipsToBounds = NO;
         [self setup];
     }
-    
     return self;
 }
 
@@ -61,8 +57,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 
     CGFloat labelWidth = 200;
     CGFloat labelHeight = 21;
-    CGFloat labelX = (CGRectGetWidth(self.bounds) - labelWidth) / 2;
-    CGFloat labelY = (CGRectGetHeight(self.bounds) - labelHeight) / 2;
 
     messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -81,9 +75,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     _bottomLeftLineViews = @[bottomLeft];
     _topRightLineViews  = @[topRight];
     _bottomRightLineViews = @[bottomRight];
-    
-    self.displayHorizontalGridLines = NO;
-    self.displayVerticalGridLines = NO;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -120,60 +111,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         
         [cornerLine[0] setFrame:verticalFrame];
     }
-}
-
-- (void)setGridHidden:(BOOL)hidden animated:(BOOL)animated
-{
-    _gridHidden = hidden;
-    
-    if (animated == NO) {
-        for (UIView *lineView in self.horizontalGridLines) {
-            lineView.alpha = hidden ? 0.0f : 1.0f;
-        }
-        
-        for (UIView *lineView in self.verticalGridLines) {
-            lineView.alpha = hidden ? 0.0f : 1.0f;
-        }
-    
-        return;
-    }
-    
-    [UIView animateWithDuration:hidden?0.35f:0.2f animations:^{
-        for (UIView *lineView in self.horizontalGridLines)
-            lineView.alpha = hidden ? 0.0f : 1.0f;
-        
-        for (UIView *lineView in self.verticalGridLines)
-            lineView.alpha = hidden ? 0.0f : 1.0f;
-    }];
-}
-
-#pragma mark - Property methods
-
-- (void)setDisplayHorizontalGridLines:(BOOL)displayHorizontalGridLines {
-    _displayHorizontalGridLines = displayHorizontalGridLines;
-    
-    [self.horizontalGridLines enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
-        [lineView removeFromSuperview];
-    }];
-    
-    self.horizontalGridLines = @[];
-    [self setNeedsDisplay];
-}
-
-- (void)setDisplayVerticalGridLines:(BOOL)displayVerticalGridLines {
-    _displayVerticalGridLines = displayVerticalGridLines;
-    
-    [self.verticalGridLines enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
-        [lineView removeFromSuperview];
-    }];
-
-    self.verticalGridLines = @[];
-    [self setNeedsDisplay];
-}
-
-- (void)setGridHidden:(BOOL)gridHidden
-{
-    [self setGridHidden:gridHidden animated:NO];
 }
 
 #pragma mark - Private methods
