@@ -228,14 +228,14 @@
     }
     else {
         CGRect frame = CGRectZero;
-        frame.size.height = 44.0f;
-        frame.size.width = 44.0f;
+        frame.size.height = 38.0f;
+        frame.size.width = 48.1f;
         frame.origin.y = CGRectGetHeight(self.bounds) - 44.0f;
         self.cancelIconButton.frame = frame;
         
         frame.origin.y = self.statusBarHeightInset;
-        frame.size.width = 44.0f;
-        frame.size.height = 44.0f;
+        frame.size.width = 38.0f;
+        frame.size.height = 48.1f;
         self.doneIconButton.frame = frame;
         
         CGRect containerRect = (CGRect){0,CGRectGetMaxY(self.doneIconButton.frame),44.0f,CGRectGetMinY(self.cancelIconButton.frame)-CGRectGetMaxY(self.doneIconButton.frame)};
@@ -244,7 +244,7 @@
         containerView.frame = containerRect;
 #endif
         
-        CGSize buttonSize = (CGSize){44.0f,44.0f};
+        CGSize buttonSize = (CGSize){38.0f,48.1f};
         
         NSMutableArray *buttonsInOrderVertically = [NSMutableArray new];
         if (!self.rotateCounterclockwiseButtonHidden) {
@@ -377,71 +377,12 @@
 #pragma mark - Image Generation -
 + (UIImage *)doneImage
 {
-    if (@available(iOS 13.0, *)) {
-        return [UIImage imageNamed: @"ic_search"];
-    }
-
-    UIImage *doneImage = nil;
-    
-    UIGraphicsBeginImageContextWithOptions((CGSize){17,14}, NO, 0.0f);
-    {
-        //// Rectangle Drawing
-        UIBezierPath* rectanglePath = UIBezierPath.bezierPath;
-        [rectanglePath moveToPoint: CGPointMake(1, 7)];
-        [rectanglePath addLineToPoint: CGPointMake(6, 12)];
-        [rectanglePath addLineToPoint: CGPointMake(16, 1)];
-        [UIColor.whiteColor setStroke];
-        rectanglePath.lineWidth = 2;
-        [rectanglePath stroke];
-        
-        
-        doneImage = UIGraphicsGetImageFromCurrentImageContext();
-    }
-    UIGraphicsEndImageContext();
-    
-    return doneImage;
+    return [UIImage imageNamed: @"ic_search"];
 }
 
 + (UIImage *)rotateCCWImage
 {
-    if (@available(iOS 13.0, *)) {
-        
-        return [UIImage imageNamed: @"ic_rotation"];
-    }
-
-    UIImage *rotateImage = nil;
-    
-    UIGraphicsBeginImageContextWithOptions((CGSize){18,21}, NO, 0.0f);
-    {
-        //// Rectangle 2 Drawing
-        UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0, 9, 12, 12)];
-        [UIColor.whiteColor setFill];
-        [rectangle2Path fill];
-        
-        
-        //// Rectangle 3 Drawing
-        UIBezierPath* rectangle3Path = UIBezierPath.bezierPath;
-        [rectangle3Path moveToPoint: CGPointMake(5, 3)];
-        [rectangle3Path addLineToPoint: CGPointMake(10, 6)];
-        [rectangle3Path addLineToPoint: CGPointMake(10, 0)];
-        [rectangle3Path addLineToPoint: CGPointMake(5, 3)];
-        [rectangle3Path closePath];
-        [UIColor.whiteColor setFill];
-        [rectangle3Path fill];
-        
-        
-        //// Bezier Drawing
-        UIBezierPath* bezierPath = UIBezierPath.bezierPath;
-        [bezierPath moveToPoint: CGPointMake(10, 3)];
-        [bezierPath addCurveToPoint: CGPointMake(17.5, 11) controlPoint1: CGPointMake(15, 3) controlPoint2: CGPointMake(17.5, 5.91)];
-        [UIColor.whiteColor setStroke];
-        bezierPath.lineWidth = 1;
-        [bezierPath stroke];
-        rotateImage = UIGraphicsGetImageFromCurrentImageContext();
-    }
-    UIGraphicsEndImageContext();
-    
-    return rotateImage;
+    return [UIImage imageNamed: @"ic_rotation"];
 }
 
 #pragma mark - Accessors -
