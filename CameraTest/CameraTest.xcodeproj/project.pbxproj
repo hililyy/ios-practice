@@ -14,7 +14,8 @@
 		02EAAB792A161FDF007BFC27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02EAAB782A161FDF007BFC27 /* Assets.xcassets */; };
 		02EAAB7C2A161FDF007BFC27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EAAB7A2A161FDF007BFC27 /* LaunchScreen.storyboard */; };
 		02EAAB842A16259A007BFC27 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EAAB832A16259A007BFC27 /* CameraViewController.swift */; };
-		02EAAB992A1720C4007BFC27 /* ToCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EAAB982A1720C4007BFC27 /* ToCropViewController.swift */; };
+		2AF08D822A192054004156A8 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AF08D812A192054004156A8 /* NavigationBarView.xib */; };
+		2AF08D842A192060004156A8 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF08D832A192060004156A8 /* NavigationBarView.swift */; };
 		626475FAF2F93AC2C6DA3DB5 /* Pods_CameraTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48930E4F6379FE7BEEAF2CFF /* Pods_CameraTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +29,9 @@
 		02EAAB7B2A161FDF007BFC27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02EAAB7D2A161FDF007BFC27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02EAAB832A16259A007BFC27 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		02EAAB982A1720C4007BFC27 /* ToCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToCropViewController.swift; sourceTree = "<group>"; };
 		192058A4DFBAE807ADC5086B /* Pods-CameraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CameraTest.release.xcconfig"; path = "Target Support Files/Pods-CameraTest/Pods-CameraTest.release.xcconfig"; sourceTree = "<group>"; };
+		2AF08D812A192054004156A8 /* NavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBarView.xib; sourceTree = "<group>"; };
+		2AF08D832A192060004156A8 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		48930E4F6379FE7BEEAF2CFF /* Pods_CameraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CameraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A63972C729C1238F33DAE40 /* Pods-CameraTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CameraTest.debug.xcconfig"; path = "Target Support Files/Pods-CameraTest/Pods-CameraTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,8 +73,9 @@
 				02EAAB712A161FDE007BFC27 /* SceneDelegate.swift */,
 				02EAAB732A161FDE007BFC27 /* ViewController.swift */,
 				02EAAB832A16259A007BFC27 /* CameraViewController.swift */,
-				02EAAB982A1720C4007BFC27 /* ToCropViewController.swift */,
 				02EAAB752A161FDE007BFC27 /* Main.storyboard */,
+				2AF08D812A192054004156A8 /* NavigationBarView.xib */,
+				2AF08D832A192060004156A8 /* NavigationBarView.swift */,
 				02EAAB782A161FDF007BFC27 /* Assets.xcassets */,
 				02EAAB7A2A161FDF007BFC27 /* LaunchScreen.storyboard */,
 				02EAAB7D2A161FDF007BFC27 /* Info.plist */,
@@ -159,6 +162,7 @@
 			files = (
 				02EAAB7C2A161FDF007BFC27 /* LaunchScreen.storyboard in Resources */,
 				02EAAB792A161FDF007BFC27 /* Assets.xcassets in Resources */,
+				2AF08D822A192054004156A8 /* NavigationBarView.xib in Resources */,
 				02EAAB772A161FDE007BFC27 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +219,7 @@
 				02EAAB742A161FDE007BFC27 /* ViewController.swift in Sources */,
 				02EAAB842A16259A007BFC27 /* CameraViewController.swift in Sources */,
 				02EAAB702A161FDE007BFC27 /* AppDelegate.swift in Sources */,
-				02EAAB992A1720C4007BFC27 /* ToCropViewController.swift in Sources */,
+				2AF08D842A192060004156A8 /* NavigationBarView.swift in Sources */,
 				02EAAB722A161FDE007BFC27 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

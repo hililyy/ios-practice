@@ -69,9 +69,9 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     if (@available(iOS 9.0, *)) {
         [NSLayoutConstraint activateConstraints:@[
             [messageLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-            [messageLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:-50],
-            [messageLabel.widthAnchor constraintEqualToConstant:labelWidth],
-            [messageLabel.heightAnchor constraintEqualToConstant:labelHeight]
+            [messageLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant: -41],
+            [messageLabel.widthAnchor constraintEqualToConstant: labelWidth],
+            [messageLabel.heightAnchor constraintEqualToConstant: labelHeight]
         ]];
     }
     
@@ -105,16 +105,16 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         CGRect verticalFrame = CGRectZero;
         switch (i) {
             case 0: //top left
-                verticalFrame = (CGRect){-10.0f, -10.0f, 30.0f, 30.0f};
+                verticalFrame = (CGRect){-10.0f, -10.0f, 26.0f, 26.0f};
                 break;
             case 1: //top right
-                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, -10.0f, 30.0f, 30.0f};
+                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, -10.0f, 26.0f, 26.0f};
                 break;
             case 2: //bottom right
-                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, boundsSize.height-kTOCropOverLayerCornerWidth, 30.0f, 30.0f};
+                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, boundsSize.height-kTOCropOverLayerCornerWidth, 26.0f, 26.0f};
                 break;
             case 3: //bottom left
-                verticalFrame = (CGRect){-10.0f, boundsSize.height-kTOCropOverLayerCornerWidth, 30.0f, 30.0f};
+                verticalFrame = (CGRect){-10.0f, boundsSize.height-kTOCropOverLayerCornerWidth, 26.0f, 26.0f};
                 break;
         }
         
