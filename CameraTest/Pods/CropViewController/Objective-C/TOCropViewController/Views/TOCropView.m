@@ -141,7 +141,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.applyInitialCroppedImageFrame = NO;
     self.editing = NO;
     self.cropBoxResizeEnabled = !circularMode;
-    self.aspectRatio = CGSizeZero;
+    self.aspectRatio = circularMode ? (CGSize){1.0f, 1.0f} : CGSizeZero;
     self.resetAspectRatioEnabled = !circularMode;
     self.restoreImageCropFrame = CGRectZero;
     self.restoreAngle = 0;
@@ -231,10 +231,10 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self addSubview:self.gridOverlayView];
     
     // The pan controller to recognize gestures meant to resize the grid view
-//    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
-//    self.gridPanGestureRecognizer.delegate = self;
-//    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
-//    [self addGestureRecognizer:self.gridPanGestureRecognizer];
+    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
+    self.gridPanGestureRecognizer.delegate = self;
+    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
+    [self addGestureRecognizer:self.gridPanGestureRecognizer];
 }
 
 #pragma mark - View Layout -
@@ -810,6 +810,15 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     [self updateCropBoxFrameWithGesturePoint:point];
 }
+//
+//- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer
+//{
+//    if (recognizer.state == UIGestureRecognizerStateBegan)
+//        [self.gridOverlayView setGridHidden:NO animated:YES];
+//
+//    if (recognizer.state == UIGestureRecognizerStateEnded)
+//        [self.gridOverlayView setGridHidden:YES animated:YES];
+//}
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -991,8 +1000,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     cropBoxFrame.size.height = floorf(MIN(cropBoxFrame.size.height, maxHeight));
     
     //Make sure we can't make the crop box too small
-    cropBoxFrame.size.width  = MAX(315, kTOCropViewMinimumBoxSize);
-    cropBoxFrame.size.height = MAX(367, kTOCropViewMinimumBoxSize);
+    cropBoxFrame.size.width  = MAX(cropBoxFrame.size.width, kTOCropViewMinimumBoxSize);
+    cropBoxFrame.size.height = MAX(cropBoxFrame.size.height, kTOCropViewMinimumBoxSize);
     
     _cropBoxFrame = cropBoxFrame;
     
@@ -1141,12 +1150,33 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     }];
 }
 
+-(void)setAlwaysShowCroppingGrid:(BOOL)alwaysShowCroppingGrid
+{
+    if (alwaysShowCroppingGrid == _alwaysShowCroppingGrid) { return; }
+    _alwaysShowCroppingGrid = alwaysShowCroppingGrid;
+//    [self.gridOverlayView setGridHidden:!_alwaysShowCroppingGrid animated:YES];
+}
 
 -(void)setTranslucencyAlwaysHidden:(BOOL)translucencyAlwaysHidden
 {
     if (_translucencyAlwaysHidden == translucencyAlwaysHidden) { return; }
     _translucencyAlwaysHidden = translucencyAlwaysHidden;
     self.translucencyView.hidden = _translucencyAlwaysHidden;
+}
+
+- (void)setGridOverlayHidden:(BOOL)gridOverlayHidden
+{
+    [self setGridOverlayHidden:_gridOverlayHidden animated:NO];
+}
+
+- (void)setGridOverlayHidden:(BOOL)gridOverlayHidden animated:(BOOL)animated
+{
+    _gridOverlayHidden = gridOverlayHidden;
+    self.gridOverlayView.alpha = gridOverlayHidden ? 1.0f : 0.0f;
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        self.gridOverlayView.alpha = gridOverlayHidden ? 0.0f : 1.0f;
+    }];
 }
 
 - (CGRect)imageViewFrame
@@ -1220,6 +1250,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
     // Toggle the visiblity of the gridlines when not editing
     BOOL hidden = !_editing;
+    if (self.alwaysShowCroppingGrid) { hidden = NO; } // Override this if the user requires
+//    [self.gridOverlayView setGridHidden:hidden animated:animated];
     
     if (resetCropbox) {
         [self moveCroppedContentToCenterAnimated:animated];
@@ -1687,7 +1719,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
     self.canBeReset = canReset;
 }
-// 자르는 부분 크기 조정
+
 #pragma mark - Convienience Methods -
 - (CGRect)contentBounds
 {
