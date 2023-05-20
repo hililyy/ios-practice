@@ -510,6 +510,9 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         
     }
     
+    @objc func goBack() {
+        dismiss(animated: true)
+    }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -519,12 +522,9 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
             view.addSubview(toCropViewController.view)
         }
         
-        
         // 커스텀 뷰 인스턴스 생성
         let customView = UIView()
         customView.backgroundColor = UIColor.white
-        
-
         
         // 라벨 생성
         let label = UILabel()
@@ -539,6 +539,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         button.setImage(UIImage(named: "ic_back"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         // 커스텀 뷰에 라벨과 버튼 추가
         customView.addSubview(label)
         customView.addSubview(button)
@@ -590,7 +591,6 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
                 emptyView.bottomAnchor.constraint(equalTo: customView.topAnchor)
             ])
         }
-        
     }
     
     open override func viewDidLayoutSubviews() {
