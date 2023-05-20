@@ -12,12 +12,18 @@ import CropViewController
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lbTitle: UILabel!
     
     var captureSession: AVCaptureSession!
     var photoOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        
+        lbTitle.text = "문제를 촬영해주세요."
+        
         captureSession = AVCaptureSession()
         captureSession.beginConfiguration()
 
@@ -55,6 +61,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         guard let img = UIImage(data: imageData) else { return }
         // 이미지뷰에 이미지 설정
         showCrop(image: img)
+    }
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
