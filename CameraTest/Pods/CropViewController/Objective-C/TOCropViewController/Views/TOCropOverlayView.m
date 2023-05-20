@@ -56,7 +56,25 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     UIImageView *topRight = [self createNewLineView:@"top_right"];
     UIImageView *bottomLeft = [self createNewLineView:@"bottom_left"];
     UIImageView *bottomRight = [self createNewLineView:@"bottom_right"];
+    UILabel *messageLabel = [self createNewLabel];
 
+
+    CGFloat labelWidth = 200;
+    CGFloat labelHeight = 30;
+    CGFloat labelX = (CGRectGetWidth(self.bounds) - labelWidth) / 2;
+    CGFloat labelY = (CGRectGetHeight(self.bounds) - labelHeight) / 2;
+
+    messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    if (@available(iOS 9.0, *)) {
+        [NSLayoutConstraint activateConstraints:@[
+            [messageLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+            [messageLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:-50],
+            [messageLabel.widthAnchor constraintEqualToConstant:labelWidth],
+            [messageLabel.heightAnchor constraintEqualToConstant:labelHeight]
+        ]];
+    }
+    
     _outerLineViews     = @[topLeft, topRight, bottomLeft, bottomRight];
     
     _topLeftLineViews   = @[topLeft];
@@ -87,16 +105,16 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         CGRect verticalFrame = CGRectZero;
         switch (i) {
             case 0: //top left
-                verticalFrame = (CGRect){-10.0f,-10.0f,30.0f,30.0f};
+                verticalFrame = (CGRect){-10.0f, -10.0f, 30.0f, 30.0f};
                 break;
             case 1: //top right
-                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth,-10.0f,30.0f,30.0f};
+                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, -10.0f, 30.0f, 30.0f};
                 break;
             case 2: //bottom right
-                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth,boundsSize.height-kTOCropOverLayerCornerWidth,30.0f,30.0f};
+                verticalFrame = (CGRect){boundsSize.width-kTOCropOverLayerCornerWidth, boundsSize.height-kTOCropOverLayerCornerWidth, 30.0f, 30.0f};
                 break;
             case 3: //bottom left
-                verticalFrame = (CGRect){-10.0f,boundsSize.height-kTOCropOverLayerCornerWidth,30.0f,30.0f};
+                verticalFrame = (CGRect){-10.0f, boundsSize.height-kTOCropOverLayerCornerWidth, 30.0f, 30.0f};
                 break;
         }
         
@@ -165,6 +183,15 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     newLine.image = [UIImage imageNamed: imageName];
     [self addSubview:newLine];
     return newLine;
+}
+
+- (nonnull UILabel *)createNewLabel {
+    UILabel *newMessage = [[UILabel alloc] initWithFrame:CGRectZero];
+    newMessage.text = @"한 문제만 잘라주세요.";
+    newMessage.textColor = UIColor.whiteColor;
+    newMessage.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:newMessage];
+    return newMessage;
 }
 
 @end
