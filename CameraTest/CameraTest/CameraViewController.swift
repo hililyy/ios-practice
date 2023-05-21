@@ -7,7 +7,6 @@
 
 import UIKit
 import AVFoundation
-import CropViewController
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
