@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "그룹 761.png",
+      "filename" : "ic_rotation.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "그룹 761@2x.png",
+      "filename" : "ic_rotation@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "그룹 761@3x.png",
+      "filename" : "ic_rotation@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -48,10 +48,10 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 
 - (void)setup
 {
-    UIImageView *topLeft = [self createNewLineView:@"top_left"];
-    UIImageView *topRight = [self createNewLineView:@"top_right"];
-    UIImageView *bottomLeft = [self createNewLineView:@"bottom_left"];
-    UIImageView *bottomRight = [self createNewLineView:@"bottom_right"];
+    UIImageView *topLeft = [self createNewLineView:@"ic_top_left"];
+    UIImageView *topRight = [self createNewLineView:@"ic_top_right"];
+    UIImageView *bottomLeft = [self createNewLineView:@"ic_bottom_left"];
+    UIImageView *bottomRight = [self createNewLineView:@"ic_bottom_right"];
     UILabel *messageLabel = [self createNewLabel];
 
 
