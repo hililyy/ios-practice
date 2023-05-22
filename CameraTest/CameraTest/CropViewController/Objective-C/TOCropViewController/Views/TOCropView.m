@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     /* Dynamic animation blurring is only possible on iOS 9, however since the API was available on iOS 8,
      we'll need to manually check the system version to ensure that it's available. */
-    self.dynamicBlurEffect = ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending);
+    self.dynamicBlurEffect = NO;
     
     //Scroll View properties
     self.scrollView = [[TOCropScrollView alloc] initWithFrame:self.bounds];
@@ -187,23 +187,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.overlayView.hidden = NO;
     self.overlayView.userInteractionEnabled = NO;
     [self addSubview:self.overlayView];
-    
-    //Translucency View
-    if (NSClassFromString(@"UIVisualEffectView")) {
-        self.translucencyEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:self.translucencyEffect];
-        self.translucencyView.frame = self.bounds;
-    }
-    else {
-        UIToolbar *toolbar = [[UIToolbar alloc] init];
-        toolbar.barStyle = UIBarStyleBlack;
-        self.translucencyView = toolbar;
-        self.translucencyView.frame = CGRectInset(self.bounds, -1.0f, -1.0f);
-    }
-    self.translucencyView.hidden = self.translucencyAlwaysHidden;
-    self.translucencyView.userInteractionEnabled = NO;
-    self.translucencyView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self addSubview:self.translucencyView];
     
     // The forground container that holds the foreground image view
     self.foregroundContainerView = [[UIView alloc] initWithFrame:(CGRect){0,0,200,200}];
@@ -751,12 +734,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
 - (void)toggleTranslucencyViewVisible:(BOOL)visible
 {
-    if (self.dynamicBlurEffect == NO) {
-        self.translucencyView.alpha = visible ? 1.0f : 0.0f;
-    }
-    else {
-        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? self.translucencyEffect : nil];
-    }
+    self.translucencyView.alpha = 0.0f;
 }
 
 - (void)updateToImageCropFrame:(CGRect)imageCropframe
@@ -1359,10 +1337,10 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self matchForegroundToBackground];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.5f
+        [UIView animateWithDuration:0.0f
                               delay:0.0f
-             usingSpringWithDamping:1.0f
-              initialSpringVelocity:1.0f
+             usingSpringWithDamping:0.0f
+              initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:translateBlock
                          completion:nil];
