@@ -134,6 +134,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
     self.toolbar.clampButtonTapped = ^{ [weakSelf showAspectRatioDialog]; };
     self.toolbar.rotateCounterclockwiseButtonTapped = ^{ [weakSelf rotateCropViewCounterclockwise]; };
     self.toolbar.rotateClockwiseButtonTapped        = ^{ [weakSelf rotateCropViewClockwise]; };
+    
+    // Hide the background content when transitioning for performance
+    [self.cropView setBackgroundImageViewHidden:NO animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -160,9 +163,6 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
         self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     }
     else {
-        // Hide the background content when transitioning for performance
-        [self.cropView setBackgroundImageViewHidden:YES animated:NO];
-        
         // The title label will fade
         self.titleLabel.alpha = animated ? 0.0f : 1.0f;
     }

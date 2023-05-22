@@ -1119,13 +1119,11 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     self.backgroundImageView.hidden = NO;
     self.backgroundImageView.alpha = beforeAlpha;
-    [UIView animateWithDuration:0.5f animations:^{
-        self.backgroundImageView.alpha = toAlpha;
-    }completion:^(BOOL complete) {
-        if (hidden) {
-            self.backgroundImageView.hidden = YES;
-        }
-    }];
+    self.backgroundImageView.alpha = toAlpha;
+    
+    if (hidden) {
+        self.backgroundImageView.hidden = YES;
+    }
 }
 
 -(void)setAlwaysShowCroppingGrid:(BOOL)alwaysShowCroppingGrid
