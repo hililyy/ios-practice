@@ -115,15 +115,13 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 107.0f;
     // Set up view controller properties
     self.transitioningDelegate = self;
     self.view.backgroundColor = [UIColor clearColor];
-    
-    BOOL circularMode = (self.croppingStyle == TOCropViewCroppingStyleCircular);
 
     // Layout the views initially
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
     self.toolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
 
     // Set up toolbar default behaviour
-    self.toolbar.clampButtonHidden = self.aspectRatioPickerButtonHidden || circularMode;
+    self.toolbar.clampButtonHidden = self.aspectRatioPickerButtonHidden;
     self.toolbar.rotateClockwiseButtonHidden = self.rotateClockwiseButtonHidden;
     
     // Set up the toolbar button actions
