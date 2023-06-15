@@ -26,7 +26,7 @@
 
 #define TOCROPVIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.12f alpha:1.0f]
 
-static const CGFloat kTOCropViewPadding = 30.0f;
+static const CGFloat kTOCropViewPadding = 14.0f;
 static const NSTimeInterval kTOCropTimerDuration = 0.8f;
 static const CGFloat kTOCropViewMinimumBoxSize = 42.0f;
 static const CGFloat kTOMaximumZoomScale = 15.0f;
@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     /* Dynamic animation blurring is only possible on iOS 9, however since the API was available on iOS 8,
      we'll need to manually check the system version to ensure that it's available. */
-    self.dynamicBlurEffect = NO;
+    self.dynamicBlurEffect = ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending);
     
     //Scroll View properties
     self.scrollView = [[TOCropScrollView alloc] initWithFrame:self.bounds];
@@ -183,11 +183,27 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     //Grey transparent overlay view
     self.overlayView = [[UIView alloc] initWithFrame:self.bounds];
     self.overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.overlayView.backgroundColor = [UIColor blackColor];
-    self.overlayView.alpha = 0.6f;
+    self.overlayView.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.35f];
     self.overlayView.hidden = NO;
     self.overlayView.userInteractionEnabled = NO;
     [self addSubview:self.overlayView];
+    
+    //Translucency View
+    if (NSClassFromString(@"UIVisualEffectView")) {
+        self.translucencyEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:self.translucencyEffect];
+        self.translucencyView.frame = self.bounds;
+    }
+    else {
+        UIToolbar *toolbar = [[UIToolbar alloc] init];
+        toolbar.barStyle = UIBarStyleBlack;
+        self.translucencyView = toolbar;
+        self.translucencyView.frame = CGRectInset(self.bounds, -1.0f, -1.0f);
+    }
+    self.translucencyView.hidden = self.translucencyAlwaysHidden;
+    self.translucencyView.userInteractionEnabled = NO;
+    self.translucencyView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:self.translucencyView];
     
     // The forground container that holds the foreground image view
     self.foregroundContainerView = [[UIView alloc] initWithFrame:(CGRect){0,0,200,200}];
@@ -211,14 +227,14 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     // The white grid overlay view
     self.gridOverlayView = [[TOCropOverlayView alloc] initWithFrame:self.foregroundContainerView.frame];
     self.gridOverlayView.userInteractionEnabled = NO;
-//    self.gridOverlayView.gridHidden = YES;
+    self.gridOverlayView.gridHidden = YES;
     [self addSubview:self.gridOverlayView];
     
     // The pan controller to recognize gestures meant to resize the grid view
-//    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
-//    self.gridPanGestureRecognizer.delegate = self;
-//    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
-//    [self addGestureRecognizer:self.gridPanGestureRecognizer];
+    self.gridPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gridPanGestureRecognized:)];
+    self.gridPanGestureRecognizer.delegate = self;
+    [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.gridPanGestureRecognizer];
+    [self addGestureRecognizer:self.gridPanGestureRecognizer];
 }
 
 #pragma mark - View Layout -
@@ -735,7 +751,12 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
 - (void)toggleTranslucencyViewVisible:(BOOL)visible
 {
-    self.translucencyView.alpha = 0.0f;
+    if (self.dynamicBlurEffect == NO) {
+        self.translucencyView.alpha = visible ? 1.0f : 0.0f;
+    }
+    else {
+        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? self.translucencyEffect : nil];
+    }
 }
 
 - (void)updateToImageCropFrame:(CGRect)imageCropframe
@@ -789,15 +810,15 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     [self updateCropBoxFrameWithGesturePoint:point];
 }
-//
-//- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer
-//{
-//    if (recognizer.state == UIGestureRecognizerStateBegan)
-//        [self.gridOverlayView setGridHidden:NO animated:YES];
-//
-//    if (recognizer.state == UIGestureRecognizerStateEnded)
-//        [self.gridOverlayView setGridHidden:YES animated:YES];
-//}
+
+- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateBegan)
+        [self.gridOverlayView setGridHidden:NO animated:YES];
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded)
+        [self.gridOverlayView setGridHidden:YES animated:YES];
+}
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -1120,18 +1141,20 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     self.backgroundImageView.hidden = NO;
     self.backgroundImageView.alpha = beforeAlpha;
-    self.backgroundImageView.alpha = toAlpha;
-    
-    if (hidden) {
-        self.backgroundImageView.hidden = YES;
-    }
+    [UIView animateWithDuration:0.5f animations:^{
+        self.backgroundImageView.alpha = toAlpha;
+    }completion:^(BOOL complete) {
+        if (hidden) {
+            self.backgroundImageView.hidden = YES;
+        }
+    }];
 }
 
 -(void)setAlwaysShowCroppingGrid:(BOOL)alwaysShowCroppingGrid
 {
     if (alwaysShowCroppingGrid == _alwaysShowCroppingGrid) { return; }
     _alwaysShowCroppingGrid = alwaysShowCroppingGrid;
-//    [self.gridOverlayView setGridHidden:!_alwaysShowCroppingGrid animated:YES];
+    [self.gridOverlayView setGridHidden:!_alwaysShowCroppingGrid animated:YES];
 }
 
 -(void)setTranslucencyAlwaysHidden:(BOOL)translucencyAlwaysHidden
@@ -1228,7 +1251,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     // Toggle the visiblity of the gridlines when not editing
     BOOL hidden = !_editing;
     if (self.alwaysShowCroppingGrid) { hidden = NO; } // Override this if the user requires
-//    [self.gridOverlayView setGridHidden:hidden animated:animated];
+    [self.gridOverlayView setGridHidden:hidden animated:animated];
     
     if (resetCropbox) {
         [self moveCroppedContentToCenterAnimated:animated];
@@ -1336,10 +1359,10 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self matchForegroundToBackground];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.0f
+        [UIView animateWithDuration:0.5f
                               delay:0.0f
-             usingSpringWithDamping:0.0f
-              initialSpringVelocity:0.0f
+             usingSpringWithDamping:1.0f
+              initialSpringVelocity:1.0f
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:translateBlock
                          completion:nil];

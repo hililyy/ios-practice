@@ -7,4 +7,5 @@ target 'FirebasePushNotification' do
 
   # Pods for FirebasePushNotification
   pod 'Firebase/Messaging'
+pod 'TOCropViewController'
 end
