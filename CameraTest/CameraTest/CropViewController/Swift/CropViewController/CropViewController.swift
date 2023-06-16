@@ -21,10 +21,9 @@
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #if canImport(TOCropViewController)
-//import TOCropViewController
-
+import TOCropViewController
 #endif
-import UIKit
+
 /**
  An enum containing all of the aspect ratio presets that this view controller supports
  */
@@ -99,14 +98,14 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     /**
      The view controller's delegate that will receive the resulting
      cropped image, as well as crop information.
-     */
+    */
     public weak var delegate: CropViewControllerDelegate? {
         didSet { self.setUpDelegateHandlers() }
     }
     
     /**
      Set the title text that appears at the top of the view controller
-     */
+    */
     override open var title: String? {
         set { toCropViewController.title = newValue }
         get { return toCropViewController.title }
@@ -153,8 +152,8 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     }
     
     /**
-     A choice from one of the pre-defined aspect ratio presets
-     */
+      A choice from one of the pre-defined aspect ratio presets
+    */
     public var aspectRatioPreset: CropViewControllerAspectRatioPreset {
         set { toCropViewController.aspectRatioPreset = newValue }
         get { return toCropViewController.aspectRatioPreset }
@@ -244,7 +243,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     }
     /**
      When enabled, hides the 'Reset' button on the toolbar.
-     
+
      Default is false.
      */
     public var resetButtonHidden: Bool {
@@ -264,7 +263,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     
     /**
      When enabled, hides the 'Done' button on the toolbar.
-     
+
      Default is false.
      */
     public var doneButtonHidden: Bool {
@@ -274,14 +273,14 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     
     /**
      When enabled, hides the 'Cancel' button on the toolbar.
-     
+
      Default is false.
      */
     public var cancelButtonHidden: Bool {
         set { toCropViewController.cancelButtonHidden = newValue }
         get { return toCropViewController.cancelButtonHidden }
     }
-    
+
     /**
      If `showActivitySheetOnDone` is true, then these activity items will
      be supplied to that UIActivityViewController in addition to the
@@ -368,7 +367,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         set { toCropViewController.onDidCropToCircleImage = newValue }
         get { return toCropViewController.onDidCropToCircleImage }
     }
-    
+
     /**
      The crop view managed by this view controller.
      */
@@ -382,7 +381,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     public var toolbar: TOCropToolbar {
         return toCropViewController.toolbar
     }
-    
+
     /*
      If this controller is embedded in UINavigationController its navigation bar is hidden by default. Set this property to false to show the navigation bar. This must be set before this controller is presented.
      */
@@ -408,30 +407,30 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         set { toCropViewController.cancelButtonTitle = newValue }
         get { return toCropViewController.cancelButtonTitle }
     }
-    
+
     /**
-     If true, button icons are visible in portairt instead button text.
-     
-     Default is NO.
-     */
+    If true, button icons are visible in portairt instead button text.
+
+    Default is NO.
+    */
     public var showOnlyIcons: Bool {
         set { toCropViewController.showOnlyIcons = newValue }
         get { return toCropViewController.showOnlyIcons }
     }
-    
+
     /**
-     Color for the 'Done' button.
-     Setting this will override the default color.
-     */
+    Color for the 'Done' button.
+    Setting this will override the default color.
+    */
     public var doneButtonColor: UIColor? {
         set { toCropViewController.doneButtonColor = newValue }
         get { return toCropViewController.doneButtonColor }
     }
     
     /**
-     Color for the 'Cancel' button.
-     Setting this will override the default color.
-     */
+    Color for the 'Cancel' button.
+    Setting this will override the default color.
+    */
     public var cancelButtonColor: UIColor? {
         set { toCropViewController.cancelButtonColor = newValue }
         get { return toCropViewController.cancelButtonColor }
@@ -506,91 +505,12 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    @objc func goBack() {
-        dismiss(animated: true)
-    }
-    
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Defer adding the view until we're about to be presented
         if toCropViewController.view.superview == nil {
             view.addSubview(toCropViewController.view)
-        }
-        
-        // 커스텀 뷰 인스턴스 생성
-        let customView = UIView()
-        customView.backgroundColor = UIColor.white
-        
-        // 라벨 생성
-        let label = UILabel()
-        label.text = "사진 조정"
-        if #available(iOS 8.2, *) {
-            label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        }
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        // 버튼 생성
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "ic_back"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        // 커스텀 뷰에 라벨과 버튼 추가
-        customView.addSubview(label)
-        customView.addSubview(button)
-        
-        // 라벨의 제약 조건 설정
-        if #available(iOS 9.0, *) {
-            NSLayoutConstraint.activate([
-                label.centerXAnchor.constraint(equalTo: customView.centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: customView.centerYAnchor)
-            ])
-        }
-        
-        // 버튼의 제약 조건 설정
-        if #available(iOS 9.0, *) {
-            NSLayoutConstraint.activate([
-                button.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 20),
-                button.centerYAnchor.constraint(equalTo: customView.centerYAnchor)
-            ])
-        }
-        
-        // 커스텀 뷰를 뷰 컨트롤러의 뷰에 추가
-        view.addSubview(customView)
-        
-        // 커스텀 뷰의 제약 조건 설정
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 9.0, *) {
-            if #available(iOS 11.0, *) {
-                NSLayoutConstraint.activate([
-                    customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    customView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                    customView.heightAnchor.constraint(equalToConstant: 45)
-                ])
-            }
-        }
-        
-        // 빈 뷰(emptyView) 생성
-        let emptyView = UIView()
-        emptyView.backgroundColor = UIColor.white
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(emptyView)
-
-        // 빈 뷰(emptyView)의 제약 조건 설정
-        if #available(iOS 9.0, *) {
-            NSLayoutConstraint.activate([
-                emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                emptyView.topAnchor.constraint(equalTo: view.topAnchor),
-                emptyView.bottomAnchor.constraint(equalTo: customView.topAnchor)
-            ])
         }
     }
     
@@ -599,7 +519,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
         toCropViewController.view.frame = view.bounds
         toCropViewController.viewDidLayoutSubviews()
     }
-    
+
     /**
      Commits the crop action as if user pressed done button in the bottom bar themself
      */
@@ -608,33 +528,33 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     }
     
     /**
-     Resets object of TOCropViewController class as if user pressed reset button in the bottom bar themself
-     */
+    Resets object of TOCropViewController class as if user pressed reset button in the bottom bar themself
+    */
     public func resetCropViewLayout() {
         toCropViewController.resetCropViewLayout()
     }
-    
+
     /**
-     Set the aspect ratio to be one of the available preset options. These presets have specific behaviour
-     such as swapping their dimensions depending on portrait or landscape sized images.
-     
-     @param aspectRatioPreset The aspect ratio preset
-     @param animated Whether the transition to the aspect ratio is animated
-     */
+    Set the aspect ratio to be one of the available preset options. These presets have specific behaviour
+    such as swapping their dimensions depending on portrait or landscape sized images.
+
+    @param aspectRatioPreset The aspect ratio preset
+    @param animated Whether the transition to the aspect ratio is animated
+    */
     public func setAspectRatioPreset(_ aspectRatio: CropViewControllerAspectRatioPreset, animated: Bool) {
         toCropViewController.setAspectRatioPreset(aspectRatio, animated: animated)
     }
     
     /**
-     Play a custom animation of the target image zooming to its position in
-     the crop controller while the background fades in.
-     
-     @param viewController The parent controller that this view controller would be presenting from.
-     @param fromView A view that's frame will be used as the origin for this animation. Optional if `fromFrame` has a value.
-     @param fromFrame In the screen's coordinate space, the frame from which the image should animate from. Optional if `fromView` has a value.
-     @param setup A block that is called just before the transition starts. Recommended for hiding any necessary image views.
-     @param completion A block that is called once the transition animation is completed.
-     */
+    Play a custom animation of the target image zooming to its position in
+    the crop controller while the background fades in.
+
+    @param viewController The parent controller that this view controller would be presenting from.
+    @param fromView A view that's frame will be used as the origin for this animation. Optional if `fromFrame` has a value.
+    @param fromFrame In the screen's coordinate space, the frame from which the image should animate from. Optional if `fromView` has a value.
+    @param setup A block that is called just before the transition starts. Recommended for hiding any necessary image views.
+    @param completion A block that is called once the transition animation is completed.
+    */
     public func presentAnimatedFrom(_ viewController: UIViewController, fromView view: UIView?, fromFrame frame: CGRect,
                                     setup: (() -> (Void))?, completion: (() -> (Void))?)
     {
@@ -647,7 +567,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
      'restoring' to a previous crop setup, this method lets you provide a previously
      cropped copy of the image, and the previous crop settings to transition back to
      where the user would have left off.
-     
+
      @param viewController The parent controller that this view controller would be presenting from.
      @param image The previously cropped image that can be used in the transition animation.
      @param fromView A view that's frame will be used as the origin for this animation. Optional if `fromFrame` has a value.
@@ -656,7 +576,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
      @param toFrame In the image's coordinate space, the previous crop frame that created the previous crop
      @param setup A block that is called just before the transition starts. Recommended for hiding any necessary image views.
      @param completion A block that is called once the transition animation is completed.
-     */
+    */
     public func presentAnimatedFrom(_ viewController: UIViewController, fromImage image: UIImage?,
                                     fromView: UIView?, fromFrame: CGRect, angle: Int, toImageFrame toFrame: CGRect,
                                     setup: (() -> (Void))?, completion:(() -> (Void))?)
@@ -670,13 +590,13 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
      Play a custom animation of the supplied cropped image zooming out from
      the cropped frame to the specified frame as the rest of the content fades out.
      If any view configurations need to be done before the animation starts,
-     
+
      @param viewController The parent controller that this view controller would be presenting from.
      @param toView A view who's frame will be used to establish the destination frame
      @param frame The target frame that the image will animate to
      @param setup A block that is called just before the transition starts. Recommended for hiding any necessary image views.
      @param completion A block that is called once the transition animation is completed.
-     */
+    */
     public func dismissAnimatedFrom(_ viewController: UIViewController, toView: UIView?, toFrame: CGRect,
                                     setup: (() -> (Void))?, completion:(() -> (Void))?)
     {
@@ -687,7 +607,7 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
      Play a custom animation of the supplied cropped image zooming out from
      the cropped frame to the specified frame as the rest of the content fades out.
      If any view configurations need to be done before the animation starts,
-     
+
      @param viewController The parent controller that this view controller would be presenting from.
      @param image The resulting 'cropped' image. If supplied, will animate out of the crop box zone. If nil, the default image will entirely zoom out
      @param toView A view who's frame will be used to establish the destination frame
@@ -750,4 +670,3 @@ extension CropViewController {
         }
     }
 }
-
