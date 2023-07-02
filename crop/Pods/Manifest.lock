@@ -1,0 +1,16 @@
+PODS:
+  - CropPickerView (0.3.0)
+
+DEPENDENCIES:
+  - CropPickerView
+
+SPEC REPOS:
+  trunk:
+    - CropPickerView
+
+SPEC CHECKSUMS:
+  CropPickerView: 7149fca438041a7a78d88e88dd0de805c182fc6a
+
+PODFILE CHECKSUM: 6d772439af858038ea3b903bb4b3bcd494ed365f
+
+COCOAPODS: 1.12.1
