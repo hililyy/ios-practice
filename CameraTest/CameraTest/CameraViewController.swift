@@ -11,17 +11,14 @@ import AVFoundation
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var lbTitle: UILabel!
     
     var captureSession: AVCaptureSession!
     var photoOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        
-        lbTitle.text = "문제를 촬영해주세요."
         
         captureSession = AVCaptureSession()
         captureSession.beginConfiguration()
@@ -54,65 +51,27 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         }
         
     }
+
+    @IBAction func takePhoto(_ sender: Any) {
+        photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self as AVCapturePhotoCaptureDelegate)
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         guard let img = UIImage(data: imageData) else { return }
         // 이미지뷰에 이미지 설정
-        showCrop(image: img)
+        showEditImage(img)
     }
     
-    @IBAction func goBack(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func takePhoto(_ sender: Any) {
-        photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self as AVCapturePhotoCaptureDelegate)
-    }
-    
-    @IBAction func goAlbum(_ sender: UIButton) {
-        didTapButton()
-    }
-}
-extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
-    @objc func didTapButton() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.originalImage] as? UIImage else { return }
-        picker.dismiss(animated: true)
-        showCrop(image: image)
-    }
-    
-    func showCrop(image: UIImage) {
-        let vc = CropViewController(croppingStyle: .default, image: image)
+    private func showEditImage(_ image: UIImage) {
         
-        vc.aspectRatioPreset = .presetSquare
-        vc.aspectRatioLockEnabled = false
-        vc.toolbarPosition = .bottom
-        vc.doneButtonTitle = "Continue"
-        vc.showOnlyIcons = true
-//        vc.customAspectRatio = CGSize(width: 315, height: 367)
-//        vc.aspectRatioLockEnabled = true
-        vc.delegate = self
-        present(vc, animated: true)
-    }
-    
-    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
-        cropViewController.dismiss(animated: true)
-    }
-    
-    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        cropViewController.dismiss(animated: true)
-        print("didCrop")
-        // 여기서 서버 요청
-        let imageView = UIImageView(frame: view.frame)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = image
-        view.addSubview(imageView)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CropViewController") as! CropViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.image = image
+        self.present(vc, animated: true)
     }
 }
