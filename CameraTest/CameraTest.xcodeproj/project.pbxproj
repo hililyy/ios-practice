@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		027C60A32A7CCDC0008F607F /* RotationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C60A22A7CCDC0008F607F /* RotationTestViewController.swift */; };
 		02BFFB582A7CC4560002A729 /* PinchTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BFFB572A7CC4560002A729 /* PinchTestViewController.swift */; };
 		02BFFB5C2A7CC6BE0002A729 /* byulee.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 02BFFB5B2A7CC6BE0002A729 /* byulee.jpeg */; };
 		02C1A4E72A71FA5A005ECAA2 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1A4E62A71FA5A005ECAA2 /* CropViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		027C60A22A7CCDC0008F607F /* RotationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTestViewController.swift; sourceTree = "<group>"; };
 		02BFFB572A7CC4560002A729 /* PinchTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchTestViewController.swift; sourceTree = "<group>"; };
 		02BFFB5B2A7CC6BE0002A729 /* byulee.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = byulee.jpeg; sourceTree = "<group>"; };
 		02C1A4E62A71FA5A005ECAA2 /* CropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				02EAAB732A161FDE007BFC27 /* MenuViewController.swift */,
 				02EAAB832A16259A007BFC27 /* CameraViewController.swift */,
 				02EAAB752A161FDE007BFC27 /* Main.storyboard */,
+				027C60A22A7CCDC0008F607F /* RotationTestViewController.swift */,
 				02BFFB572A7CC4560002A729 /* PinchTestViewController.swift */,
 				02C1A4E62A71FA5A005ECAA2 /* CropViewController.swift */,
 				02C1A4EC2A71FDC2005ECAA2 /* JEImageCropper.swift */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02EAAB742A161FDE007BFC27 /* MenuViewController.swift in Sources */,
+				027C60A32A7CCDC0008F607F /* RotationTestViewController.swift in Sources */,
 				02BFFB582A7CC4560002A729 /* PinchTestViewController.swift in Sources */,
 				02C1A4E72A71FA5A005ECAA2 /* CropViewController.swift in Sources */,
 				02C1A4ED2A71FDC2005ECAA2 /* JEImageCropper.swift in Sources */,
