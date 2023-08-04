@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-6o-yOi">
-                                <rect key="frame" x="131" y="311" width="131.33333333333337" height="230.33333333333337"/>
+                                <rect key="frame" x="131" y="278.33333333333326" width="131.33333333333337" height="295.66666666666674"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAP-P7-tgV">
                                         <rect key="frame" x="0.0" y="0.0" width="131.33333333333334" height="34.333333333333336"/>
@@ -30,7 +30,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-Sh-gd8">
-                                        <rect key="frame" x="0.0" y="65.333333333333314" width="131.33333333333334" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="65.333333333333371" width="131.33333333333334" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="앨범"/>
                                         <connections>
@@ -51,6 +51,14 @@
                                         <buttonConfiguration key="configuration" style="plain" title="rotation 테스트"/>
                                         <connections>
                                             <segue destination="bhy-gc-akn" kind="show" id="bBp-zN-2AJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sal-yR-xAA">
+                                        <rect key="frame" x="0.0" y="261.33333333333331" width="131.33333333333334" height="34.333333333333314"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Swipe 테스트"/>
+                                        <connections>
+                                            <segue destination="ncn-Od-fWj" kind="show" id="f4E-5E-0CO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -163,7 +171,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcY-FL-nXa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="695"/>
+            <point key="canvasLocation" x="1804" y="725"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="jIc-AA-3bD">
+            <objects>
+                <viewController storyboardIdentifier="SwipeSecondViewController" id="cGH-2s-Fxt" customClass="SwipeSecondViewController" customModule="CameraTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vua-1B-fIk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJN-Pk-qy0">
+                                <rect key="frame" x="168.66666666666666" y="415.66666666666669" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JpT-r4-uLl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="vJN-Pk-qy0" firstAttribute="centerX" secondItem="vua-1B-fIk" secondAttribute="centerX" id="9Vn-SN-cNz"/>
+                            <constraint firstItem="vJN-Pk-qy0" firstAttribute="centerY" secondItem="vua-1B-fIk" secondAttribute="centerY" id="g6K-M8-69M"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="l2L-MO-BKP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kY5-ZO-fef" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="MnZ-8q-Ca8"/>
+            </objects>
+            <point key="canvasLocation" x="2708" y="2446"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="yQc-t9-R8T">
+            <objects>
+                <viewController storyboardIdentifier="SwipeFirstViewController" id="5fV-bH-LYu" customClass="SwipeFirstViewController" customModule="CameraTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f22-xz-FO4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="first" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-in-Abh">
+                                <rect key="frame" x="181.66666666666666" y="415.66666666666669" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ISV-Q1-hGy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="AQ9-in-Abh" firstAttribute="centerY" secondItem="f22-xz-FO4" secondAttribute="centerY" id="XnH-dU-1HB"/>
+                            <constraint firstItem="AQ9-in-Abh" firstAttribute="centerX" secondItem="f22-xz-FO4" secondAttribute="centerX" id="z4F-37-bOi"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="lIy-Nr-63V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urn-De-ftP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Ey5-oF-x9z"/>
+            </objects>
+            <point key="canvasLocation" x="2708" y="1790"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MPB-RG-w4c">
+            <objects>
+                <tabBarController id="ncn-Od-fWj" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ER3-uv-CNb"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mfD-Ty-MVX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="5fV-bH-LYu" kind="relationship" relationship="viewControllers" id="FWQ-hW-Ffp"/>
+                        <segue destination="cGH-2s-Fxt" kind="relationship" relationship="viewControllers" id="M2g-Jl-rNg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rM5-yu-euG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="2093"/>
         </scene>
         <!--Crop View Controller-->
         <scene sceneID="YzH-Qh-Uvp">
@@ -328,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4G-fS-dyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="694"/>
+            <point key="canvasLocation" x="1804" y="1400"/>
         </scene>
     </scenes>
     <resources>
