@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCVCell: UICollectionViewCell {
+final class HomeCVCell: UICollectionViewCell {
     
     static let identifier = "HomeCVCell"
     
@@ -19,17 +19,13 @@ class HomeCVCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initUI()
+        
         initSubviews()
         initConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initUI() {
-        
     }
     
     func initSubviews() {

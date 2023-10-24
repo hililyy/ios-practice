@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchBar: BaseView {
+final class SearchBar: BaseView {
     
     let textfield: UITextField = {
         let textField = UITextField()
@@ -33,7 +33,9 @@ class SearchBar: BaseView {
     
     
     override func initSubviews() {
-        addSubviews([textfield, searchButton, backButton])
+        addSubviews([textfield, 
+                     searchButton,
+                     backButton])
     }
     
     override func initConstraints() {

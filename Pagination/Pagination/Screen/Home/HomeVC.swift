@@ -8,8 +8,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
-class HomeVC: UIViewController, UITextFieldDelegate {
+final class HomeVC: UIViewController {
     
     let homeView = HomeView()
     let viewModel = HomeViewModel()
@@ -21,68 +22,101 @@ class HomeVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initalize()
+    }
+    
+    private func initalize() {
         homeView.collectionView.delegate = self
         homeView.collectionView.dataSource = self
-        initTarget()
-    }
-
-    func initTarget() {
         homeView.searchBar.textfield.delegate = self
         
+        initTarget()
+    }
+    
+    private func initTarget() {
         homeView.searchBar.textfield.rx.text.orEmpty
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] text in
                 guard let self else { return }
-                requestApi(query: text)
+                
+                viewModel.clearPageInfo()
+                requestApiFirstStep(text: text)
             })
             .disposed(by: disposeBag)
     }
     
-    func requestApi(query: String) {
-        viewModel.requestSearchData(query: query) {
-            self.homeView.collectionView.reloadData()
+    private func requestApiFirstStep(text: String) {
+        viewModel.requestSearchData(query: text) { [weak self] result in
+            guard let self else { return }
+            
+            viewModel.searchDatas = result.documents
+            homeView.collectionView.reloadData()
+        }
+    }
+    
+    private func requestApiMoreStep(text: String) {
+        viewModel.requestSearchData(query: text) { [weak self] result in
+            guard let self else { return }
+            
+            viewModel.isEnabledPaging = false
+            viewModel.count += 1
+
+            self.viewModel.searchDatas.append(contentsOf: result.documents)
+            DispatchQueue.main.async {
+                self.homeView.collectionView.reloadData()
+                self.viewModel.isEnabledPaging = true
+            }
         }
     }
 }
 
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.searchDatas.count ?? 0
+        return viewModel.searchDatas.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = homeView.collectionView.dequeueReusableCell(withReuseIdentifier: HomeCVCell.identifier, for: indexPath) as? HomeCVCell else { return UICollectionViewCell() }
+        
         let urlString = viewModel.searchDatas[indexPath.row].imageURL
-        cell.imageView.load(urlString: urlString)
-    
+        DispatchQueue.main.async {
+            cell.imageView.setImage(urlString: urlString)
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let numberOfItemsPerRow: CGFloat = 3
-        let spacingBetweenItems: CGFloat = 15
+        let spacingBetweenItems: CGFloat = 10
         let totalSpacing = (numberOfItemsPerRow - 1) * spacingBetweenItems
         let availableWidth = homeView.collectionView.frame.width - totalSpacing
         let calculatedItemWidth = availableWidth / numberOfItemsPerRow
-        return CGSize(width: calculatedItemWidth, height: calculatedItemWidth)
+        
+        return CGSize(width: calculatedItemWidth,
+                      height: calculatedItemWidth)
     }
 }
 
 extension HomeVC : UIScrollViewDelegate {
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let contentOffset_y = scrollView.contentOffset.y
-        let tableViewContentSize = homeView.collectionView.contentSize.height
-        let pagination_y = tableViewContentSize * 0.2
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        let isEndPosition = offsetY > (contentHeight - height)
         
-        if contentOffset_y > tableViewContentSize - pagination_y {
-            viewModel.requestSearchData(query: homeView.searchBar.textfield.text ?? "") {
-                DispatchQueue.main.async {
-                    self.homeView.collectionView.reloadData()
-                }
-            }
+        if isEndPosition && viewModel.isEnabledPaging {
+            let text = homeView.searchBar.textfield.text ?? ""
+            requestApiMoreStep(text: text)
         }
+    }
+}
+
+extension HomeVC: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          view.endEditing(true)
     }
 }

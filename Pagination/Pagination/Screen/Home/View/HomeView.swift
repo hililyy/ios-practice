@@ -39,8 +39,8 @@ class HomeView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
-            make.left.equalTo(snp.left)
-            make.right.equalTo(snp.right)
+            make.left.equalTo(snp.left).offset(10)
+            make.right.equalTo(snp.right).offset(-10)
             make.bottom.equalTo(snp.bottom)
         }
     }

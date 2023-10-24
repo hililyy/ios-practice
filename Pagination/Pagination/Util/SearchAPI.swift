@@ -22,7 +22,6 @@ extension SearchAPI: TargetType {
         case .searchImage(_, _, _):
             return "/v2/search/image"
         }
-        
     }
     
     var method: Moya.Method {
@@ -45,9 +44,6 @@ extension SearchAPI: TargetType {
         }
     
     var headers: [String : String]? {
-        return ["Authorization": "KakaoAK 42639d338c45ec5c55f2166674361974"]
+        return ["Authorization": "KakaoAK [REST API KEY]"]
     }
-    
-    
 }
-

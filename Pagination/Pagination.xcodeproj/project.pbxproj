@@ -73,6 +73,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0285D40C2AE773AE005B36DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				02C7043D2AE64DBD00E27B2A /* HomeView.swift */,
+				02C704572AE651E800E27B2A /* SearchBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0285D40D2AE773B2005B36DA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				02C7046D2AE65E6D00E27B2A /* HomeCVCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		02C7041D2AE64A7C00E27B2A = {
 			isa = PBXGroup;
 			children = (
@@ -92,16 +109,13 @@
 		02C704282AE64A7C00E27B2A /* Pagination */ = {
 			isa = PBXGroup;
 			children = (
-				02C704592AE653FF00E27B2A /* Extension */,
-				02C704562AE651DA00E27B2A /* CustomView */,
-				02C704552AE651B500E27B2A /* Search */,
-				02C704542AE651B100E27B2A /* Home */,
+				02C704592AE653FF00E27B2A /* Util */,
+				02C704562AE651DA00E27B2A /* Screen */,
 				02C704292AE64A7C00E27B2A /* AppDelegate.swift */,
 				02C7042B2AE64A7C00E27B2A /* SceneDelegate.swift */,
 				02C704322AE64A7D00E27B2A /* Assets.xcassets */,
 				02C704342AE64A7D00E27B2A /* LaunchScreen.storyboard */,
 				02C704372AE64A7D00E27B2A /* Info.plist */,
-				02C704502AE64EB700E27B2A /* BaseView.swift */,
 			);
 			path = Pagination;
 			sourceTree = "<group>";
@@ -109,38 +123,32 @@
 		02C704542AE651B100E27B2A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				02C7046B2AE65A9B00E27B2A /* SearchAPI.swift */,
+				0285D40D2AE773B2005B36DA /* Cell */,
+				0285D40C2AE773AE005B36DA /* View */,
 				02C704522AE6503A00E27B2A /* HomeNC.swift */,
 				02C7042D2AE64A7C00E27B2A /* HomeVC.swift */,
-				02C7043D2AE64DBD00E27B2A /* HomeView.swift */,
 				02C704672AE6577C00E27B2A /* HomeViewModel.swift */,
 				02C704692AE6578700E27B2A /* SearchModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		02C704552AE651B500E27B2A /* Search */ = {
+		02C704562AE651DA00E27B2A /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				02C704542AE651B100E27B2A /* Home */,
 			);
-			path = Search;
+			path = Screen;
 			sourceTree = "<group>";
 		};
-		02C704562AE651DA00E27B2A /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-				02C704572AE651E800E27B2A /* SearchBar.swift */,
-				02C7046D2AE65E6D00E27B2A /* HomeCVCell.swift */,
-			);
-			path = CustomView;
-			sourceTree = "<group>";
-		};
-		02C704592AE653FF00E27B2A /* Extension */ = {
+		02C704592AE653FF00E27B2A /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				02C7045A2AE6540900E27B2A /* Extension.swift */,
+				02C7046B2AE65A9B00E27B2A /* SearchAPI.swift */,
+				02C704502AE64EB700E27B2A /* BaseView.swift */,
 			);
-			path = Extension;
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
