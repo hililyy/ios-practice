@@ -65,7 +65,7 @@ final class HomeVC: UIViewController {
             self.viewModel.searchDatas.append(contentsOf: result.documents)
             DispatchQueue.main.async {
                 self.homeView.collectionView.reloadData()
-                self.viewModel.isEnabledPaging = true
+                self.viewModel.isEnabledPaging = !result.meta.isEnd
             }
         }
     }
@@ -88,7 +88,6 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let numberOfItemsPerRow: CGFloat = 3
         let spacingBetweenItems: CGFloat = 10
         let totalSpacing = (numberOfItemsPerRow - 1) * spacingBetweenItems
@@ -102,7 +101,6 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension HomeVC : UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height

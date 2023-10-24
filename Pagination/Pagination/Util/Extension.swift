@@ -16,17 +16,18 @@ extension UIView {
 
 extension UIImageView {
     func setImage(urlString: String) {
-        ImageCache.default.retrieveImage(forKey: urlString, options: nil) { result in
+        ImageCache.default.retrieveImage(forKey: urlString) { result in
             switch result {
             case .success(let value):
+                // 캐시 존재
                 if let image = value.image {
-                    //캐시가 존재하는 경우
                     self.image = image
                 } else {
-                    //캐시가 존재하지 않는 경우
+                    //캐시 미 존재
                     guard let url = URL(string: urlString) else { return }
                     self.kf.setImage(with: url)
                 }
+                
             case .failure(let error):
                 print(error)
             }

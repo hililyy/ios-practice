@@ -44,6 +44,6 @@ extension SearchAPI: TargetType {
         }
     
     var headers: [String : String]? {
-        return ["Authorization": "KakaoAK [REST API KEY]"]
+        return ["Authorization": "KakaoAK 42639d338c45ec5c55f2166674361974"]
     }
 }
